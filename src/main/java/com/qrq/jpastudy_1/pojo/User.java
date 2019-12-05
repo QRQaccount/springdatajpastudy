@@ -39,6 +39,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.valueOf(uid)+'|'+name+String.valueOf(age);
+        return String.valueOf(uid) + '|' + name + '|' + String.valueOf(age);
     }
 }
