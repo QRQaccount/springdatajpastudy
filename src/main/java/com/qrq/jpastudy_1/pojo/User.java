@@ -1,44 +1,28 @@
 package com.qrq.jpastudy_1.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import java.util.Set;
+
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@ToString
+@Getter
+@Setter
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "uid", nullable = false)
     private Integer uid;
+    @Column(name = "username", nullable = false)
     private String name;
     private Integer age;
 
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(uid) + '|' + name + '|' + String.valueOf(age);
-    }
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserHead> userHeads;
 }
